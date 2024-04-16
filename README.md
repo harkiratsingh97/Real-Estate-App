@@ -9,7 +9,7 @@ KiratEstate is a full-stack web application built using the MERN stack (MongoDB,
   - Google OAuth for easy authentication.
 
 - **Property Management**:
-  - Authenticated users can list new properties with details such as title, description, price, location, etc.
+  - Authenticated users can list new properties with details such as title, images, description, price, location, etc.
 
 - **Property Listings**:
   - Users can view a list of available properties.
