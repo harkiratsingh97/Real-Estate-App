@@ -35,11 +35,11 @@ KiratEstate is a full-stack web application built using the MERN stack (MongoDB,
    git clone https://github.com/harkiratsingh97/Real-.git
 
 2. Navigate to the project directory:
-  ```bash
+   ```bash
   cd KiratEstate
 
 3. Install dependencies for both frontend and backend:
-  ```bash
+   ```bash
   cd client
   npm install
   cd ..
@@ -50,7 +50,7 @@ KiratEstate is a full-stack web application built using the MERN stack (MongoDB,
 - Add necessary environment variables like MongoDB URI, Google OAuth credentials, etc.
 
 5. Start the development servers:
-  ```bash
+   ```bash
   cd ../client
   npm start
   cd ..
