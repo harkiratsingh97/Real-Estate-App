@@ -67,10 +67,10 @@ KiratEstate is a full-stack web application built using the MERN stack (MongoDB,
   - api/routes/: API routes for authentication, property listing, etc.
   - api/config/: Configuration files including database connection setup, Passport.js strategies, etc.
 
-##Contributing
+## Contributing
 We welcome contributions to improve and expand the features of KiratEstate. Feel free to fork the repository, make changes, and submit pull requests.
 
-##License
+## License
 This project is licensed under the MIT License.
 
 
