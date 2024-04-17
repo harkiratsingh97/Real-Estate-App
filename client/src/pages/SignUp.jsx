@@ -15,6 +15,7 @@ const SignUp = () => {
 		});
 	};
 
+    //Function for handling Submit 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
