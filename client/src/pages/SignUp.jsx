@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
 	const [formData, setFormData] = useState({});
@@ -15,7 +16,7 @@ const SignUp = () => {
 		});
 	};
 
-    //Function for handling Submit 
+	//Function for handling Submit
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -28,7 +29,7 @@ const SignUp = () => {
 				body: JSON.stringify(formData),
 			});
 			const data = await res.json();
-			if (data.success===false) {
+			if (data.success === false) {
 				setError(data.message);
 				setLoading(false);
 				return;
@@ -74,6 +75,7 @@ const SignUp = () => {
 				>
 					{loading ? "Loading..." : "Sign Up"}
 				</button>
+				<OAuth />
 			</form>
 			<div className="flex gap-2 mt-5">
 				<p>Have an account?</p>

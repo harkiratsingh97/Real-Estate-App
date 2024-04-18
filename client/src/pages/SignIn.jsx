@@ -6,13 +6,16 @@ import {
 	signInStart,
 	signInSuccess,
 } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
 	const [formData, setFormData] = useState({});
-	const { error, loading } = useSelector((state) => state.userReducer);
+	const { error, loading, currentUser } = useSelector(
+		(state) => state.userReducer
+	);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
+	console.log(currentUser);
 	//Function for handling changes to input tags
 	const handleChange = (e) => {
 		setFormData({
@@ -70,6 +73,7 @@ const SignIn = () => {
 				>
 					{loading ? "Loading..." : "Sign In"}
 				</button>
+				<OAuth />
 			</form>
 			<div className="flex gap-2 mt-5">
 				<p>Dont have an account?</p>
