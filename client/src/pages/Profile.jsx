@@ -11,6 +11,9 @@ import {
 	deleteUserFailure,
 	deleteUserStart,
 	deleteUserSuccess,
+	logoutUserFailure,
+	logoutUserStart,
+	logoutUserSuccess,
 	updateUserFailure,
 	updateUserStart,
 	updateUserSuccess,
@@ -36,7 +39,6 @@ const Profile = () => {
 
 	const handleDelete = async () => {
 		try {
-
 			dispatch(deleteUserStart());
 
 			const res = await fetch(`/api/user/delete/${currentUser._id}`, {
@@ -51,14 +53,27 @@ const Profile = () => {
 			}
 
 			dispatch(deleteUserSuccess(data));
-
 		} catch (error) {
-
 			dispatch(deleteUserFailure(error.message));
-
 		}
 	};
 
+	const handleSignOut = async () => {
+		try {
+			dispatch(logoutUserStart());
+			const res = await fetch("/api/auth/signout");
+			const data = await res.json();
+
+			if (data.success === false) {
+				dispatch(logoutUserFailure());
+				return;
+			}
+
+			dispatch(logoutUserSuccess());
+		} catch (error) {
+			dispatch(logoutUserFailure());
+		}
+	};
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.id]: e.target.value });
 	};
@@ -182,7 +197,9 @@ const Profile = () => {
 				<span onClick={handleDelete} className="text-red-700 cursor-pointer">
 					Delete Account
 				</span>
-				<span className="text-red-700 cursor-pointer">Sign Out</span>
+				<span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+					Sign Out
+				</span>
 			</div>
 			<p className="text-red-700 mt-5">{error ? error : ""}</p>
 			<p className="text-green-700 mt-5">
