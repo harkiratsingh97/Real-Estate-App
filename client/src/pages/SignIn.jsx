@@ -10,12 +10,10 @@ import OAuth from "../components/OAuth";
 
 const SignIn = () => {
 	const [formData, setFormData] = useState({});
-	const { error, loading, currentUser } = useSelector(
-		(state) => state.userReducer
-	);
+	const { error, loading } = useSelector((state) => state.userReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	console.log(currentUser);
+
 	//Function for handling changes to input tags
 	const handleChange = (e) => {
 		setFormData({
