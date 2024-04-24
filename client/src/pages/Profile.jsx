@@ -147,6 +147,30 @@ const Profile = () => {
 			setShowListingsError(true);
 		}
 	};
+
+	const handleListingDelete = async (listingId) => {
+		try {
+			const res = await fetch(`/api/listing/delete/${listingId}`, {
+				method: "DELETE",
+			});
+
+			const data = await res.json();
+
+			if (data.success === false) {
+				console.log(data.message);
+				return;
+			}
+
+			setListings((prev) => {
+				return prev.filter((listing) => {
+					return listing._id !== listingId;
+				});
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="p-3 max-w-lg mx-auto">
 			<h1 className="text-3xl text-center font-semibold mt-7">Profile</h1>
@@ -219,7 +243,10 @@ const Profile = () => {
 				</Link>
 			</form>
 			<div className="flex justify-between mt-5">
-				<span onClick={handleDelete} className="text-red-700 cursor-pointer">
+				<span
+					onClick={handleListingDelete}
+					className="text-red-700 cursor-pointer"
+				>
 					Delete Account
 				</span>
 				<span onClick={handleSignOut} className="text-red-700 cursor-pointer">
@@ -242,7 +269,7 @@ const Profile = () => {
 					<h1 className="text-center mt-7 text-2xl font-semibold">
 						Your Listings
 					</h1>
-					
+
 					{listings.map((listing) => (
 						<div
 							key={listing._id}
@@ -257,12 +284,17 @@ const Profile = () => {
 							</Link>
 							<Link
 								className="flex-1 text-slate-700 font-semibold  hover:underline truncate"
-								to={`/lsitings/${listing._id}`}
+								to={`/listings/${listing._id}`}
 							>
 								<p>{listing.name}</p>
 							</Link>
 							<div className="flex flex-col items-center">
-								<button className="text-red-700 uppercase">Delete</button>
+								<button
+									className="text-red-700 uppercase"
+									onClick={() => handleListingDelete(listing._id)}
+								>
+									Delete
+								</button>
 								<button className="text-green-700 uppercase">Edit</button>
 							</div>
 						</div>
