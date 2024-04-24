@@ -243,10 +243,7 @@ const Profile = () => {
 				</Link>
 			</form>
 			<div className="flex justify-between mt-5">
-				<span
-					onClick={handleListingDelete}
-					className="text-red-700 cursor-pointer"
-				>
+				<span onClick={handleDelete} className="text-red-700 cursor-pointer">
 					Delete Account
 				</span>
 				<span onClick={handleSignOut} className="text-red-700 cursor-pointer">
@@ -295,7 +292,9 @@ const Profile = () => {
 								>
 									Delete
 								</button>
-								<button className="text-green-700 uppercase">Edit</button>
+								<Link to={`/edit-listing/${listing._id}`}>
+									<button className="text-green-700 uppercase">Edit</button>
+								</Link>
 							</div>
 						</div>
 					))}
