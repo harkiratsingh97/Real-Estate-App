@@ -1,4 +1,3 @@
-import { list } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +12,8 @@ import {
 	FaParking,
 	FaShare,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import Contact from "../components/Contact";
 
 const Listing = () => {
 	SwiperCore.use(Navigation);
@@ -20,7 +21,11 @@ const Listing = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 
+	const { currentUser } = useSelector((state) => state.userReducer);
+
 	const { id } = useParams();
+
+	const [contact, setContact] = useState(false);
 	useEffect(() => {
 		const fetchListing = async () => {
 			try {
@@ -95,7 +100,7 @@ const Listing = () => {
 							{listing.offer === true && (
 								<p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
 									{" "}
-									${+listing.regularPrice - +listing.discountPrice}
+									${+listing.regularPrice - +listing.discountPrice} discount
 								</p>
 							)}
 						</div>
@@ -122,10 +127,20 @@ const Listing = () => {
 							</li>
 							<li className="flex items-center gap-1 whitespace-nowrap ">
 								<FaChair className="text-lg" />
-                                {listing.furnished ? `Furnished` : `Not Furnished`}
-
+								{listing.furnished ? `Furnished` : `Not Furnished`}
 							</li>
 						</ul>
+						{currentUser && listing.userRef !== currentUser._id && !contact && (
+							<button
+								onClick={() => setContact(true)}
+								className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+							>
+								Contact Landlord
+							</button>
+						)}
+						{currentUser && listing.userRef !== currentUser._id && contact && (
+							<Contact listing={listing} />
+						)}
 					</div>
 				</>
 			)}
