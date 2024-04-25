@@ -91,6 +91,7 @@ export const getListings = async (req, res, next) => {
 		}
 
 		let parking = req.query.parking;
+
 		if (parking === undefined || parking === "false") {
 			parking = { $in: [false, true] };
 		}
@@ -105,6 +106,8 @@ export const getListings = async (req, res, next) => {
 		const sort = req.query.sort || "createdAt";
 
 		const order = req.query.order || "desc";
+
+		console.log(req.query);
 
 		const listings = await Listing.find({
 			name: { $regex: searchTerm, $options: "i" },
