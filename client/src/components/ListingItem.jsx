@@ -20,7 +20,7 @@ const ListingItem = ({ listing }) => {
 							{listing.address}
 						</p>
 					</div>
-					<p className="text-sm text-slate-600 line-clamp-2">
+					<p className="text-sm text-slate-600 line-clamp-2 min-h-10">
 						{" "}
 						{listing.description}
 					</p>
