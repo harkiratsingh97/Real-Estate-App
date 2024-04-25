@@ -127,10 +127,12 @@ const Search = () => {
 		const searchQuery = urlParams.toString();
 
 		const res = await fetch(`/api/listing/get?${searchQuery}`);
-		const data = res.json();
+		const data = await  res.json();
+        
 		if (data.length < 9) {
 			setShowMore(false);
 		}
+
 		setListings([...listings, ...data]);
 	};
 
@@ -260,7 +262,9 @@ const Search = () => {
 						<button
 							onClick={onShowMoreClick}
 							className="text-green-700 hover:underline p-7 w-full text-center"
-						></button>
+						>
+							Show more
+						</button>
 					)}
 				</div>
 			</div>

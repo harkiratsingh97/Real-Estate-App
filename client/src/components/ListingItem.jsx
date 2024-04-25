@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 const ListingItem = ({ listing }) => {
 	return (
-		<div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
+		<div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[270px]">
 			<Link to={`/listing/${listing._id}`}>
 				<img
 					className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
