@@ -28,6 +28,8 @@ const Home = () => {
 				const res = await fetch("/api/listing/get?type=rent&limit=4");
 				const data = await res.json();
 				setRentListings(data);
+				console.log(data);
+
 				fetchSaleListings();
 			} catch (error) {
 				console.log(error);
@@ -39,6 +41,7 @@ const Home = () => {
 				const res = await fetch("/api/listing/get?type=sale&limit=4");
 				const data = await res.json();
 				setSaleListings(data);
+				console.log(data);
 			} catch (error) {
 				console.log(error);
 			}
